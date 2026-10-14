@@ -1,0 +1,6 @@
+// Debug configuration. Secrets live in the gitignored Secrets.xcconfig at the repo root
+// (template: Secrets.example.xcconfig). `#include?` makes it optional, so CI and fresh
+// clones build without it.
+#include? "../Secrets.xcconfig"
+
+SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG

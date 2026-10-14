@@ -1,0 +1,5 @@
+// Release configuration.
+#include? "../Secrets.xcconfig"
+
+// Blank any dev-only secrets here so Release binaries never contain them, e.g.:
+// DEV_API_KEY =

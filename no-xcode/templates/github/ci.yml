@@ -1,0 +1,32 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install XcodeGen
+        run: brew install xcodegen
+
+      - name: Unit tests
+        run: make test SIM="iPhone 16 Pro"
+
+      - name: UI tests + screenshots
+        run: make screenshots SIM="iPhone 16 Pro"
+
+      - name: Upload UI results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ui-results
+          path: |
+            build/ui.xcresult
+            build/screenshots
+            build/xcodebuild.log
+          if-no-files-found: ignore
